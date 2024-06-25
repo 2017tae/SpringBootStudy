@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트 글자수 표기</title>
+    <script>
+        /*
+            1. 10글자 이상이면 '10글자 이상입니다' 문구 표기
+            2. 10글자 이상이면 input태그의 테두리 or 배경 색 변경
+            3. 10글자 미만이면 'n글자' 문구를 표기하고 원래 색 변경
+            4. 위의 문구를 span태그에 표기
+        */
+
+        function keyup() {
+            let text = document.querySelector('#text');
+            let contents = document.querySelector('#contents');
+
+            if(text.value.length >= 10) {
+                contents.innerHTML = '10글자 이상입니다.';
+                text.style.borderColor = 'red';
+            } else {
+                contents.innerHTML = text.value.length + '글자';
+                text.style.borderColor = 'black';
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="text" onkeyup="keyup()">
+    <span id="contents"></span>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            JSON (JavaScript Object Notation)
+            자바스크립트 객체 표기법을 기반으로 한
+            데이터 교환 형식.
+            - 장점 : 사람이 읽기 쉬우면서도 쉽게 파싱이
+                    가능하고 생성할 수 있는 형식으로,
+                    웹 어플리케이션에서 서버와 클라이언트
+                    간에 데이터를 교환하는데 자주 사용
+
+                        Java            JSON
+            Boolean     new Boolean()   let a = true;
+            Number      new Number()    let b = 3;
+            String      new String()    let c = "aaa";
+            Array       new Array()     let ar = [ ];
+            Object      new Object()    let ob = { };
+        */
+
+        // 문자열
+        let obj = '{"id": "aaa", "title": "bbb"}';
+        console.log('--- 문자열 ---');
+        console.log(obj.id);
+        console.log(obj["id"]);
+
+        console.log('--- 문자열 => JSON 객체 ---');
+        let ob = JSON.parse(obj);
+        console.log(ob.id);
+        console.log(ob["id"]);
+
+        console.log('--- JSON 객체 => 문자열 ---');
+        let obj2 = {"id": "aaa", "title": "bbb"};
+        let ob2 = JSON.stringify(obj2);
+        console.log(typeof ob2);
+
+        window.onload = function() {
+            let person = {
+                name: "홍길동",
+                age: 30,
+                isStudent: false,
+                courses: ["Math", "Science", "History"],
+                address: {
+                    street: "123 main st",
+                    city: "Anytown",
+                    state: "CA"
+                }
+            };
+
+            // 보내는 쪽
+            let jsonString = JSON.stringify(person);
+            console.log(jsonString);
+            console.log(typeof jsonString);
+
+            // 받는 쪽
+            let jsonString2 = '{"name":"홍길동","age":30,"isStudent":false,"courses":["Math","Science","History"],"address":{"street":"123 main st","city":"Anytown","stat":"CA"}}';
+            let person2 = JSON.parse(jsonString2);
+            console.log(person2);
+            console.log(typeof person2);
+            console.log(person2.name);
+            console.log(person2.courses[1]);
+
+            let contents = document.querySelector('#contents');
+            let str = '';
+            str += `<table>`;
+            str += `<caption>학생 정보</caption>`;
+            str += `<tr>`;
+            str +=   `<th>이름</th>`;
+            str +=   `<td>${person2.name}</td>`;
+            str += `</tr>`;
+            str += `<tr>`;
+            str +=   `<th>나이</th>`;
+            str +=   `<td>${person2.age}</td>`;
+            str += `</tr>`;
+            str += `<tr>`;
+            str +=   `<th>과목</th>`;
+            str +=   `<td>${person2.courses[0]}`;
+            str +=   `, ${person2.courses[1]}`;
+            str +=   `, ${person2.courses[0]}`;
+            str +=   `</td>`;
+            str += `</tr>`;
+            str += `<tr>`;
+            str +=   `<th>주소</th>`;
+            str +=   `<td>${person2.address.street}`;
+            str +=   `, ${person2.address.city}`;
+            str +=   `, ${person2.address.state}`;
+            str +=   `</td>`;
+            str += `</tr>`;
+            str += `</table>`;
+
+            contents.innerHTML = str;
+        }
+
+    </script>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        caption {
+            font-size: x-large;
+        }
+        th {
+            width: 100px;
+            height: 80px;
+            text-align: center;
+            background-color: beige;
+        }
+        td {
+            width: 300px;
+            height: 80px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="contents"></div>
+</body>
+</html>

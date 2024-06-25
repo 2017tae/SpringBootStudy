@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 조건문
+        // if문
+        let num = 20;
+        if(num > 10) {
+            console.log('10보다 크다');
+        }
+
+        // 0, null, '', undefined  =  false
+        if(!0)    { console.log(0, true); }
+        if(!null) { console.log(null, true); }
+        if(!'')   { console.log('공백', true); }
+        if(!undefined) { console.log('undefined', true); }
+
+        // switch문
+        let site = 
+        prompt('네이버, 다음, 구글 중 즐겨 쓰는 포털 사이트는?');
+        // console.log(site);
+
+        switch (site) {
+            case '네이버' : 
+                document.write('<a href="https://www.naver.com">네이버</a>');
+                break;
+            case '다음' : 
+                document.write('<a href="https://www.daum.net">다음</a>');
+                break;
+            case '구글' : 
+                document.write('<a href="https://www.google.com">구글</a>');
+                break;
+            default : alert('보기 중에 없는 사이트입니다.');
+        }
+
+        // 반복문
+        for(let i = 0; i < 5; i++) {
+            if(i % 2 == 0) {
+                document.write('<p class="red">반복문'+ i +'</p>');
+            } else {
+                document.write('<p class="blue">반복문'+ i +'</p>');
+            }
+        }
+
+        // for...in문
+        // 객체의 열거 가능한 속성을 순회할 때 사용
+        // 배열 사용시
+        let arr = [2, 4, 6, 8, 10];
+        for (let i in arr) {
+            // i는 첨자(index)를 의미
+            console.log(i, arr[i]);
+        } 
+        // 객체 사용시
+        const obj = { a: 1, b: 2, c: 3 };
+        for (let key in obj) {
+            // key는 객체의 속성을 의미(key)
+            console.log(key, obj[key]);
+        }
+
+        // for...of문
+        // 배열, 문자열, Map, Set 등의 객체를 순회할때 사용
+        // 해당 순서의 데이터를 의미(java의 향상된 for문)
+        const array = [10, 20, 30];
+        for (let value of array) {
+            console.log(value);
+        }
+
+
+    </script>
+    <style>
+        .red { color: red; }
+        .blue { color: blue; }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>

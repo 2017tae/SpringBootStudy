@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid black;
+            margin: auto;
+            width: 700px;
+        }
+        th {
+            width: 200px;
+            height: 120px;
+        }
+        td {
+            width: 400px;
+            height: 120px;
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            width: 300px;
+            height: 50px;
+            font-size: large;
+        }
+        p {
+            font-size: 24px;
+        }
+        h1 {
+            font-size: 60px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        .btn {
+            width: 100px;
+            height: 30px;
+            background-color: lightgray;
+            border-color: #f0efed;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // var, let, const
+            let userid = document.getElementById('userid');
+            let userpw = document.getElementById('userpw');
+            let checkpw = document.getElementById('checkpw');
+
+            userid.addEventListener('keyup', function() {
+                if(userid.value.length >= 8) {
+                    userid.style.backgroundColor = 'lightblue';
+                } else {
+                    userid.style.backgroundColor = 'lightpink';
+                }
+            });
+
+            checkpw.addEventListener('keyup', function() {
+                if(userpw.value == checkpw.value) {
+                    checkpw.style.backgroundColor = 'lightblue';
+                } else {
+                    checkpw.style.backgroundColor = 'lightpink';
+                }
+            });
+        }
+
+        function infoCheck() {
+            let userid = document.querySelector('#userid');
+            let userpw = document.querySelector('#userpw');
+            let checkpw = document.querySelector('#checkpw');
+
+            console.log(userid.value);
+            console.log(userpw.value);
+            console.log(checkpw.value);
+
+            if(userid.value.length < 8) {
+                alert('ID는 8자 이상 써라!!');
+                return false;
+            }
+            if(userpw.value == null || checkpw.value == null
+                || userpw.value == '' || checkpw.value == ''
+                || userpw.value != checkpw.value
+            ) {
+                alert('PW가 비어있거나 일치하지 않는다!!');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>회원 가입</h1>
+    <table>
+        <form action="" method="get" 
+            onsubmit="return infoCheck();">
+            <tr>
+                <th><p>아이디</p></th>
+                <td>
+                    <input type="text" name="userid" id="userid" placeholder="아이디는 8자 이상">
+                </td>
+            </tr>
+            <tr>
+                <th><p>비밀번호</p></th>
+                <td>
+                    <input type="password" name="userpw" id="userpw">
+                </td>
+            </tr>
+            <tr>
+                <th><p>비밀번호 확인</p></th>
+                <td>
+                    <input type="password" id="checkpw">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="가입" class="btn">
+                    <input type="reset" value="취소" class="btn">
+                </td>
+            </tr>
+        </form>
+    </table>
+</body>
+</html>

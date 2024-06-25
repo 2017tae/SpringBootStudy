@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jq_folder/jquery-3.7.1.min.js"></script>
+    <style>
+        .boxstyle {
+            color: yellowgreen;
+            width: 200px;
+            background-color: aquamarine;
+            font-size: 30px;
+            border: 2px solid black;
+        }
+        table, th, td {
+            border: 1px dotted black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th {
+            width: 100px;
+            height: 30px;
+            background-color: beige;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            $('h2').css('color', 'blue');
+            $('#text1').css('color', 'red');
+            $('.text2').css('color', 'yellow');
+            $('p.text2').css('background-color', 'black')
+            .css('border', '1px solid gold');
+            $('p:first').css('color', 'green');
+
+            $('input[type="text"]')
+                .css('background-color', 'pink');
+            $('#select1').css('background-color', 'yellow');
+            $('#select1 option')
+                .css('background-color', 'lightblue');
+
+            $('#addBtn').click(function() {
+                $('p:last').addClass('boxstyle');
+            });
+            // 다수의 이벤트를 등록하는 방법
+            $('#removeBtn').on(
+                {
+                    'click': function() {
+                        $('p:last').removeClass('boxstyle');
+                    }
+                    , 'mouseover': function() {
+                        alert('aa');
+                    }
+                }
+            );
+            // even(짝수), odd(홀수)
+            $('tr:odd').css('background-color', 'lightgray');
+        });
+    </script>
+</head>
+<body>
+    <h2>[ JQuery 선택자 ]</h2>
+    <p>p태그</p>
+    <p id="text1">id가 있는 태그</p>
+    <p class="text2">class가 있는 태그</p>
+    <p>p태그</p>
+
+    <input type="text"><br>
+    <input type="checkbox"><br>
+    <select id="select1">
+        <option>aaa</option>
+        <option>bbb</option>
+        <option>ccc</option>
+    </select>
+
+    <input type="button" id="addBtn" value="addClass">
+    <input type="button" id="removeBtn" value="removeClass">
+    <p>CSS 적용 대상인 마지막 p태그</p>
+
+    <hr>
+
+    <table>
+        <tr>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>20</td>
+            <td>부산</td>
+        </tr>
+        <tr>
+            <td>강감찬</td>
+            <td>30</td>
+            <td>서울</td>
+        </tr>
+        <tr>
+            <td>곽재우</td>
+            <td>40</td>
+            <td>대구</td>
+        </tr>
+        <tr>
+            <td>홍경래</td>
+            <td>50</td>
+            <td>광주</td>
+        </tr>
+        <tr>
+            <td>권율</td>
+            <td>60</td>
+            <td>전주</td>
+        </tr>
+        <tr>
+            <td>홍경래</td>
+            <td>50</td>
+            <td>광주</td>
+        </tr>
+        <tr>
+            <td>권율</td>
+            <td>60</td>
+            <td>전주</td>
+        </tr>
+    </table>
+</body>
+</html>

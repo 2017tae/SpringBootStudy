@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        console.log(new String());
+        
+        // valueOf() : String 인스턴스의 값을 리턴
+        let str = 'Hello';
+        console.log(str.valueOf());
+
+        // length : 문자열의 길이값을 반환
+        console.log(str.length);
+
+        // slice() : 시작 인덱스부터 끝 인덱스 직전 까지 값을 반환
+        console.log("====slice====");
+        str2 = 'Hello World';
+        console.log(str2.slice(6, str2.length));
+        // 끝나는 인덱스를 주지 않으면 마지막까지 자른다
+        console.log(str2.slice(6));
+        // 음수를 넣으면 뒤에서부터 자른다
+        console.log(str2.slice(-5));
+
+        // substring() : slice() 메서드와 비슷
+        console.log(str2.substring(0, 5));
+        // 0보다 작은 수는 0으로 취급
+        console.log(str2.substring(-5));
+
+        // replace()
+        str3 = 'Hello World';
+        console.log(str3.replace('World', '홍길동'));
+
+        // search() : 해당 문자 인덱스 반환
+        console.log(str3.search('H'));
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            ** 배열(Array)
+            - 자바스크립트 배열은 순서가 있는 값들의 
+              집합을 저장하는 변수
+            - 배열은 다양한 데이터 타입의 값을 포함할 수 있으며
+              각 값은 인덱스로 접근 가능
+        */
+
+        let fruits = ["Apple", "Banana", "Cherry"];
+        let fruits2 = new Array("Apple", "Banana", "Cherry");
+
+        // 배열 요소 접근
+        console.log(fruits[0]); // "Apple"
+        console.log(fruits[1]); // "Banana"
+
+        // 배열 요소 수정
+        fruits[1] = "Blueberry";
+        console.log(fruits);
+
+        // 배열 길이
+        console.log(fruits.length); // 3
+
+        // push : 배열의 끝에 요소 추가
+        fruits.push("Melon");
+        console.log(fruits);
+
+        // pop : 배열의 끝 요소 제거
+        // 배열의 끝에서 요소를 제거하고, 제거된 요소를 반환
+        let lastFruit = fruits.pop();
+        console.log(lastFruit);
+        console.log(fruits);
+
+        // concat : 배열 합치기
+        // concat 메서드는 두 개 이상의 배열을 
+        // 합쳐 새로운 배열을 반환
+        let vegetables = ["Carrot", "Peas"];
+        let food = fruits.concat(vegetables);
+        console.log(food);
+
+        // sort : 배열 정렬
+        fruits.sort();
+        console.log(fruits);
+
+        // reverse : 역순 정렬
+        fruits.reverse();
+        console.log(fruits);
+
+        // 배열 순회 (forEach)
+        // forEach 메서드는 배열의 각 요소에 대해 함수를 실행
+        fruits.forEach((fruit, index) => {
+            console.log(`${index + 1}. ${fruit}`);
+        });
+
+        // 2차원 배열
+        let arr = [
+                    "자바"
+                    , "DB"
+                    , ["HTML", "CSS", "JavaScript"]
+                ];
+        console.log("-----2차원배열-----");
+        console.log(arr[0]);
+        console.log(arr[2][0]);
+        for(let subject of arr[2]) {
+            console.log(subject);
+        }
+
+        console.log("-----전체 순회-----");
+        // 전체 순회
+        for (let i = 0; i < arr.length; i++) {
+            // 주어진 값이 배열인지 여부를 확인
+            if (Array.isArray(arr[i])) {
+                for (let j = 0; j < arr[i].length; j++) {
+                    console.log(arr[i][j]);
+                }
+            } else {
+                console.log(arr[i]);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

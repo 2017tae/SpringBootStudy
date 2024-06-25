@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>window 예제</title>
+    <script>
+      /*
+            1. window.open()
+            2. window.moveTo(x좌표, y좌표)
+            3. x, y 좌표를 랜덤객체로부터
+            4. setInterval()
+        */
+      window.onload = function () {
+        let btn1 = document.querySelector("#btn1");
+        let btn2 = document.querySelector("#btn2");
+        console.log(1);
+        let win; // window창
+        let timer; // setInterval 함수
+
+        btn1.addEventListener("click", function () {
+          win = window.open(
+            "./Ex.07 sub.html", //url
+            "",
+            "top=100, left=100, width=150, height=100"
+          );
+
+          timer = setInterval(function () {
+            win.moveTo(
+              Math.floor(Math.random() * 1920),
+              Math.floor(Math.random() * 1080)
+            );
+          }, 300);
+        });
+        btn2.addEventListener("click", function () {
+          clearInterval(timer);
+          win.close();
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <input type="button" value="눌러봐" id="btn1" />
+    <input type="button" value="멈춰" id="btn2" />
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+    <!-- JQuery를 사용하기 위한 js 파일 참조 -->
+    <script src="./jq_folder/jquery-3.7.1.min.js"></script>
+    <!-- 
+        * J-Query
+        1. 서로 다른 브라우저라도 JQuery를 이용하여 DOM을 조작할 수 있다.
+        2. CSS 에서 객체들을 선택하는 규칙을 적용할 수 있다.
+        3. 86kb의 경량 스크립트 라이브러리를 제공한다.
+    -->
+</head>
+<body>
+    <h2>JQuery 기본 개념</h2>
+
+    <img id="img1" src="../HTML/1. image/file/eee.jpg">
+    <script>
+        // jQuery() 함수를 이용해 DOM객체를 jQuery의 DOM으로 사용하겠다
+        // jQuery(img).attr('src', '../HTML/1. image/file/aaa.jpg');
+        
+        // jQuery() 함수를 $ 로 표현
+        // $(img).attr('src', '../HTML/1. image/file/aaa.jpg');
+        
+        // $(  ) 안에 문자열을 넣으면, CSS 선택자 규칙 적용 가능
+        $('#img1').attr('src', '../HTML/1. image/file/aaa.jpg');
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function upperCase() {
+            console.log('onchange');
+            let name = document.getElementById('fname');
+            name.value = name.value.toUpperCase();
+        }
+        function focusOn() {
+            console.log('onfocus');
+            document.querySelector('#fname').style.backgroundColor 
+                = 'yellow';
+        }
+        function focusOut() {
+            // JavaScript로 HTML 문서의 태그 엘리먼트를 가져오기
+            let inputTag = document.querySelector('#fname');
+            // 가져온 input 태그 엘리먼트의 속성값 변경
+            inputTag.style.backgroundColor = 'white';
+        }
+        function btnClick() {
+            // alert('클릭 이벤트');
+            let inputTag = document.querySelector('#fname');
+            inputTag.value = '';
+        }
+        function changeRed() {
+            // alert('onmouseover');
+            let div = document.querySelector('#mouse');
+            div.style.color = 'red';
+        }
+        function changeBlue() {
+            // alert('onmouseout');
+            let div = document.querySelector('#mouse');
+            div.style.color = 'blue';
+        }
+
+        let i = 1; //전역변수
+        function changeImg() {
+            // alert('함수 호출');
+            let file = ["aaa.jpg", "bbb.jpg", "ccc.jpg"];
+            let img = document.querySelector('#img');
+            if(i >= file.length) {
+                i = 0;
+            }
+            img.src = '../HTML/1. image/file/' + file[i];
+            i++;
+        }
+    </script>
+</head>
+<body>
+    <label for="fname">이름 입력: </label>
+    <input type="text" name="fname" id="fname"
+        onchange="upperCase()" onfocus="focusOn()"
+        onfocusout="focusOut()">
+    <input type="button" value="초기화" onclick="btnClick()">
+    <br><br>
+    <div id="mouse" onmouseover="changeRed()"
+        onmouseout="changeBlue()">마우스를 올려보세요</div>
+    <br>
+    <input type="button" value="변경" onclick="changeImg()">
+    <br>
+    <img src="../HTML/1. image/file/aaa.jpg" id="img">
+</body>
+</html>

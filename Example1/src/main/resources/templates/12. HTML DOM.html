@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        DOM (Document Object Model) : 문서객체모델
+        프로그램과 스크립트가 문서의 컨텐츠, 구조, 스타일
+        등에 동적으로 엑세스하여 업데이트 할 수 있도록
+        하는 플랫폼 및 언어 중립적인 인터페이스
+
+        HTML 엘리먼트 찾기
+         - document.getElementById(id) : id로 엘리먼트 찾기
+         - document.getElementsByTagName(name) : 
+                태그 이름으로 엘리먼트 찾기
+         - document.getElementsByClassName(name) :
+                클래스 이름으로 엘리먼트 찾기
+         - document.querySelector(선택자) :
+                선택자로 엘리먼트 찾기
+         - document.querySelectorAll(선택자) :
+                선택자로 다수의 엘리먼트 찾기
+         
+        HTML 엘리먼트 변경하기
+         - element명.innerHTML = HTML 컨텐츠
+            : 엘리먼트의 HTML 내용 변경
+         - element명.attribute(속성이름) = 변경할 속성 값
+            : 엘리먼트의 속성 값 변경
+         - element명.style.속성이름 = 변경할 스타일 값
+            : 엘리먼트의 스타일 변경
+        
+        HTML 엘리먼트 생성
+         - document.createElement(element)  : 엘리먼트 생성
+         - document.appendChild(element)    : 엘리먼트 추가
+         - document.removeElement(element)  : 엘리먼트 삭제
+         - document.replaceChild(element)   : 엘리먼트 교체
+         - document.write(text)             : HTML 쓰기
+
+    -->
+</head>
+<body>
+    <p id="demo">안녕하세요</p>
+    <p class="demo">안녕하세요</p>
+    <p class="demo">안녕하세요</p>
+    <input type="text" name="name" id="id" value="김길동">
+
+    <script>
+        document.getElementById("demo").innerHTML 
+            = 'Hello World';
+        document.getElementById("id").value = '홍길동';
+
+        document.getElementById("id").style.color = 'red';
+
+        let button = document.createElement('button');
+        button.innerHTML = '전송하기';
+        document.body.appendChild(button);
+    </script>
+</body>
+</html>

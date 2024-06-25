@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            1. 산술연산자
+            +, -, *, /, **, %, ++, --
+            2. 대입연산자
+            =, +=, -=, *=, /=, %=, *=
+            3. 비교연산자
+            >, >=, <, <=, ==, !=, ===, !==
+            4. 논리연산자
+            &&, ||, !
+            5. 타입연산자
+            typeof, instanceof(주로 객체 타입 확인)
+        */
+        
+        // 산술연산
+        console.log(3**2);
+
+        // 문자열 연산
+        let text1 = '홍';
+        let text2 = '길동';
+        let text3 = text1 + ' ' + text2;
+        console.log(text3);
+
+        let a = 10, b = 20;
+        let str = a + "와 " + b 
+            + "의 \n합계 값은 = " + (a+b);
+        console.log(str);
+
+        // Template 문자열
+        // 변수, 함수 호출, 객체의 속성 등 접근
+        let template = `${a}와 ${b}의 \n합계 값은 = ${a+b}`;
+        console.log(template);
+
+        // 비교연산
+        let num1 = 50;
+        let num2 = '50';
+        let num3 = 30;
+        let num4 = '30';
+        console.log(num1 == num2);
+        console.log(num1 === num2);
+        console.log(num3 !== num4);
+
+        // 논리연산
+        console.log(num1 < num3 || num1 > num3);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

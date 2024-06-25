@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+            Math 객체
+                1) 속성: PI(원주율), E(오일러상수)
+                2) 메서드
+        */
+        // Math
+        console.log(`원주율: ${Math.PI}`);
+        console.log(`오일러 상수: ${Math.E}`);
+        // abs()    => 절대값
+        console.log(`abs(): ${Math.abs(-3)}`);      //3
+        console.log(`abs(): ${Math.abs("-2")}`);    //2
+        console.log(`abs(): ${Math.abs(null)}`);    //0
+        console.log(`abs(): ${Math.abs("")}`);      //0
+        console.log(`abs(): ${Math.abs()}`);        //NaN
+        console.log(`abs(): ${Math.abs("Korea")}`); //NaN
+        console.log(`abs(): ${Math.abs([1, 2])}`);  //NaN
+        console.log(`abs(): ${Math.abs(undefined)}`); //NaN
+
+        // ceil(n)  => 올림(주어진 숫자보다 큰 정수에 가깝게 올림)
+        console.log("====ceil====");
+        console.log(Math.ceil(0.95));   //1
+        console.log(Math.ceil(5.0001)); //6
+        console.log(Math.ceil(-0.95));  //-0
+        //javascript 0, -0 을 구별
+
+        // floor(n) => 내림(주어진 숫자보다 가까운 정수에 내림)
+        console.log("====floor====");
+        console.log(Math.floor(0.95));  //0
+        console.log(Math.floor(5.0001));//5
+        console.log(Math.floor(-0.95)); //-1
+
+        // trunc(n) => 버림
+        console.log("====trunc====");
+        console.log(Math.trunc(0.95));  //0
+        console.log(Math.trunc(5.0001));//5
+        console.log(Math.trunc(-0.95)); //-0
+
+        // round(n) => 반올림
+        console.log("====round====");
+        console.log(Math.round(0.95));  //1
+        console.log(Math.round(5.0001));//5
+        console.log(Math.round(-0.95)); //-1
+        console.log(Math.round(-5.5));  //-5 (-5.51은 -6)
+
+        console.log("====참고====");
+        console.log(0 / 0);     //NaN
+        console.log(10 / 0);    //Infinity
+        console.log(10 / 0.0);  //Infinity
+        //2진수로 변환하는 과정에서 오차가 생김
+        console.log(0.1 + 0.2); 
+        console.log(0.1 + 0.2 === 0.3); //false
+
+        // max
+        console.log("====max====");
+        console.log(Math.max(1, 5, 3));     //5
+        console.log(Math.max(-1, -5, -3));  //-1
+
+        // min
+        console.log("====min====");
+        console.log(Math.min(1, 5, 3));     //1
+        console.log(Math.min(-1, -5, -3));  //-5
+
+        // 스프레드 연산자
+        // 배열이나 객체를 확장하거나 복사하는데 사용
+        // 가변인자처럼 사용
+        console.log("====스프레드 연산자====");
+        let arr = [1, 5, 3];
+        console.log(Math.max(arr));     //NaN
+        console.log(Math.max(...arr));  //5
+
+        let arr1 = [1, 2, 3];
+        let arr2 = [...arr1];
+        console.log(arr2);
+
+        // random : 0이상 1미만의 난수 발생
+        console.log("====random====");
+        for(let i = 0; i < 5; i++){
+            console.log(Math.random());
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

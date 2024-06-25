@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>classlist</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            let hBtn = document.querySelector('#highlightButton');
+            let cBtn = document.querySelector('#clearButton');
+
+            hBtn.addEventListener('click', function() {
+                // 모든 .text 클래스를 가진 요소를 선택
+                const pTag = document.querySelectorAll('.text');
+
+                // for...of문으로 해당 엘리먼트들 각각에 접근
+                for (let e of pTag) {
+                    e.classList.add('highlight');
+                }
+            });
+            cBtn.addEventListener('click', function() {
+                const pTag = document.querySelectorAll('.text');
+                for (let e of pTag) {
+                    e.classList.remove('highlight');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>querySelectorAll 예제</h1>
+    <p class="text">첫 번째 문장</p>
+    <p class="text">두 번째 문장</p>
+    <p class="text">세 번째 문장</p>
+    <div>
+        <p class="text">네 번째 문장(div태그 안)</p>
+    </div>
+    <button id="highlightButton">강조</button>
+    <button id="clearButton">강조 제거</button>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select box 예제</title>
+    <script>
+        function funcSel() {
+            let sel = document.querySelector('#sel');
+            let img = document.querySelector('#imgSel');
+
+            for (let i = 0; i < sel.length; i++){
+                if (sel.options[i].selected == true) {
+                    img.src = '../HTML/1. image/file/'
+                        + sel.options[i].value;
+                }
+            }
+        }
+    </script>
+    <style>
+        #sel {
+            display: block;
+            width: 280px;
+            height: 30px;
+            margin: 10px;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+    <select id="sel" onchange="funcSel()">
+        <option value="aaa.jpg">다람쥐</option>
+        <option value="bbb.jpg">강아지</option>
+        <option value="ccc.jpg">고양이</option>
+    </select>
+    <img src="../HTML/1. image/file/aaa.jpg" id="imgSel">
+</body>
+</html>

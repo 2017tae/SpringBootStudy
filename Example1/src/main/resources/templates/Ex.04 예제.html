@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 출력 예제</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        caption {
+            font-size: x-large;
+        }
+        th {
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            background-color: beige;
+        }
+        td {
+            width: 300px;
+            height: 80px;
+            text-align: center;
+        }
+        div {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function openList() {
+            let list = [
+                {"이름":"홍길동", "등급":"일반회원", "가입일":"20/01/03"},
+                {"이름":"손오공", "등급":"실버회원", "가입일":"22/05/03"},
+                {"이름":"이순신", "등급":"골드회원", "가입일":"24/06/12"},
+            ];
+
+            let str = '<table>';
+            str += '<tr><th>이름</th><th>등급</th><th>가입일</th></tr>';
+            for (let i = 0; i < list.length; i++){
+                str += `<tr>`;
+                str +=  `<td>${list[i]["이름"]}</td>`;
+                str +=  `<td>${list[i]["등급"]}</td>`;
+                str +=  `<td>${list[i]["가입일"]}</td>`;
+                str += `</tr>`;
+            }
+            str += '</table>';
+            document.querySelector('#target').innerHTML = str;
+            document.querySelector('#target').style.display = 'block';
+        }
+        function closeList() {
+            document.querySelector('#target').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="정보 보기" onclick="openList()">
+    <input type="button" value="정보 닫기" onclick="closeList()">
+    <div id="target"></div>
+</body>
+</html>

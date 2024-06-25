@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경색 바꾸기</title>
+    <script>
+        /*
+            배경색 바꾸기
+            1. 버튼 태그에서 클릭이벤트시 함수 호출
+            2. element명.style.backgroundColor = 색  /변경
+        */
+
+        let color = ["lightpink", "lightblue"
+            , "lightgreen", "lightgray"];
+        let i = 0;
+
+        function changeColor() {
+            if(i >= color.length) {
+                i = 0;
+            }
+            let bodyTag = document.querySelector('body');
+            bodyTag.style.backgroundColor = color[i];
+            i++;
+        }
+    </script>
+</head>
+<body>
+    <button onclick="changeColor()">배경색 변경</button>
+</body>
+</html>

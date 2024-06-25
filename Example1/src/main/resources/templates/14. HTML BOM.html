@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Object Model</title>
+    <script>
+        /*
+            BOM : Browser Object Model
+            1. window
+            2. screen
+            3. location
+            4. navigator
+            5. alert(alert, confirm, prompt)
+            6. history
+        */
+       function closeWindow() {
+            window.close();
+       }
+       function openWindow() {
+            // window.open('https://www.naver.com');
+            let w = screen.width / 2;
+            let h = screen.height / 2;
+            let t = screen.height / 4;
+            let l = screen.width / 4;
+            let win = window.open(
+                'https://www.naver.com' 
+                , '_blank'
+                , 'top='+ t +', left='+ l +', width='+ w +', height='+ h
+            );
+       }
+       function screenInfo() {
+            let x = screen.width;
+            let y = screen.height;
+            alert(x + " * " + y);
+       }
+       function locationHref() {
+            location.href = 'https://www.google.com';
+       }
+       function navigatorInfo() {
+            alert(navigator.userAgent);
+       }
+       function alertWindow() {
+            alert('경고창 & 알림창');
+       }
+       function confirmWindow() {
+            let result = confirm('정말 삭제하시겠습니까?');
+            alert(result);
+       }
+       function goFoward() {
+            history.forward();
+       }
+       function goBack() {
+            window.history.back();
+       }
+       function output1() {
+            let d = new Date();
+            let str = '';
+
+            let year = d.getFullYear();
+            let month = d.getMonth() + 1;
+            let date = d.getDate();
+            let arr = ['일', '월', '화', '수', '목', '금', '토'];
+            let day = arr[d.getDay()];
+
+            let hour = d.getHours();
+            let min = d.getMinutes();
+            let sec = d.getSeconds();
+
+            str += `${year}년 ${month}월 ${date}일 `;
+            str += `${day}요일 `;
+            str += `${hour}시 ${min}분 ${sec}초`;
+
+            let div = document.querySelector('#time');
+            div.innerHTML = str;
+       }
+       function output2() {
+            // 콜백함수
+            // 다른 함수의 인수로 전달되어 나중에 호출되는 함수
+            // setTimeout()
+            // 지정한 시간이 지난 후에 한 번 콜백 함수를 실행
+            setTimeout(function() {
+                let d = new Date();
+                alert(d.toLocaleString());
+            }, 3000);   //milliseconds
+       }
+
+       let timer;   //전역변수
+       function timeStart() {
+            // setInterval()
+            // 지정한 시간 간격마다 콜백함수를 반복해서 실행
+            timer = setInterval(function() {
+                let d = new Date();
+                let hour = d.getHours();
+                let min = d.getMinutes();
+                let sec = d.getSeconds();
+                let str = '';
+
+                str += `${hour<10 ? `0${hour}` : hour}`;
+                str += ` : ${min<10 ? `0${min}` : min}`;
+                str += ` : ${sec<10 ? `0${sec}` : sec}`;
+
+                let div = document.querySelector('#time2');
+                div.innerHTML = str;
+            }, 1000);
+       }
+       function timeStop() {
+            clearInterval(timer);
+       }
+    </script>
+</head>
+<body>
+    <input type="button" onclick="closeWindow()" value="창 닫기">
+    <input type="button" onclick="openWindow()" value="창 열기">
+    <input type="button" onclick="screenInfo()" value="화면 정보">
+    <input type="button" onclick="locationHref()" value="주소 이동">
+    <input type="button" onclick="navigatorInfo()" value="브라우저 정보">
+    <input type="button" onclick="alertWindow()" value="경고창">
+    <input type="button" onclick="confirmWindow()" value="확인창">
+    <input type="button" onclick="goFoward()" value="앞으로">
+    <input type="button" onclick="goBack()" value="뒤로">
+
+    <hr>
+    <input type="button" onclick="output1()" 
+        value="시간출력(즉시 한번)">
+    <div id="time"></div>
+    <input type="button" onclick="output2()" 
+        value="시간출력(잠시 후 한번)">
+    <hr>
+    <input type="button" onclick="timeStart()" 
+        value="시간 출력(계속)">
+    <input type="button" onclick="timeStop()" 
+        value="시간 멈춤">
+    <div id="time2"></div>
+</body>
+</html>

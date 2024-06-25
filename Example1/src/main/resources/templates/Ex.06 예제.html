@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 계산기</title>
+    <script>
+        /*
+            1. 입력박스 3개, 셀렉트 1개(사칙연산), 버튼 2개
+            2. 계산 버튼을 누르면 사칙연산에 대한 결과를 입력박스에 출력
+            3. 입력박스에 숫자가 아닌 값이 들어올 경우 alert 처리
+            4. alert 처리 후 해당 입력박스에 focus, select 처리
+            5. 0으로 연산시 '0으로 나눌 수 없습니다' 문구 처리
+
+            // trim() , isNaN(), focus(), select(), parseInt()
+        */
+        function cal() {
+            let num1 = document.querySelector('#num1');
+            let num2 = document.querySelector('#num2');
+            let op = document.querySelector('#op');
+            let result;
+
+            if (num1.value.trim().length == 0 || isNaN(num1.value)) {
+                alert('숫자를 입력해주세요.');
+                num1.focus();       // 마우스 커서이동
+                num1.select();      // 컨텐츠 전체 선택
+                return;
+            }
+            if (num2.value.trim().length == 0 || isNaN(num2.value)) {
+                alert('숫자를 입력해주세요.');
+                num2.focus();       // 마우스 커서이동
+                num2.select();      // 컨텐츠 전체 선택
+                return;
+            }
+            switch(op.value) {
+                case '+' :
+                    result = parseInt(num1.value) + parseInt(num2.value);
+                    break;
+                case '-' :
+                    result = parseInt(num1.value) - parseInt(num2.value);
+                    break;
+                case '*' :
+                    result = parseInt(num1.value) * parseInt(num2.value);
+                    break;
+                case '/' :
+                    if(num2.value == 0) {
+                        alert('0으로 나눌 수 없습니다');
+                        num2.focus();
+                        return;
+                    }
+                    result = parseInt(num1.value) / parseInt(num2.value);
+                    break;
+            }
+
+            document.querySelector('#num3').value = result;
+
+        }
+
+    </script>
+</head>
+<body>
+    <h1>* 계산기</h1>
+    <form action="" method="">
+        <input type="text" class="num" id="num1">
+        <select id="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" class="num" id="num2">
+        <span> = </span>
+        <input type="text" class="num" id="num3" readonly>
+        <input type="button" onclick="cal()" value="계산">
+        <input type="reset" value="리셋">
+    </form>
+
+</body>
+</html>
