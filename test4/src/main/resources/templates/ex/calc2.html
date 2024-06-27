@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <script src="../js/jquery-3.7.1.min.js"></script>
+  <script>
+    //페이지가 준비되면 제일 먼저 실행되는 ready의 함수(콜백함수)
+    $(document).ready(function () {
+      //id가 'formButton'인 버튼을 클릭하면 폼 전송
+      $("#formButton").on("click", submit);
+    });
+    function submit() {
+      if ($("#num1").val() == "" || isNaN($("#num1").val())) {
+        alert("정수를 입력하세요.");
+        $("#num1").focus();
+        $("#num1").select();
+        return;
+      }
+      if ($("#num2").val() == "" || isNaN($("#num2").val())) {
+        alert("정수를 입력하세요.");
+        $("#num2").focus();
+        $("#num2").select();
+        return;
+      }
+
+      // 폼전송
+      console.log(1);
+      $("#form").submit();
+      console.log(1);
+    }
+  </script>
+  <body>
+    <h1>계산기2</h1>
+    <form id="form" action="calc2" method="post" onsubmit="return submit()">
+      <input type="text" name="num1" id="num1" />
+      <select name="operatr" id="operatr">
+        <option value="+" selected>+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+
+      <input type="text" name="num2" id="num2" />
+      <input type="button" id="formButton" value="계산" />
+    </form>
+  </body>
+</html>
