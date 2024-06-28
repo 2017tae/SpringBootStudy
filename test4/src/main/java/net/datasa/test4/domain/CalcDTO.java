@@ -6,8 +6,8 @@ import lombok.Getter;
 
 @Data
 public class CalcDTO {
-	String num1;
-	String num2;
+	int num1;
+	int num2;
 	String operatr;
 
 }

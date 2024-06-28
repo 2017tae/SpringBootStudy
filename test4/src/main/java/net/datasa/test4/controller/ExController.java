@@ -27,30 +27,30 @@ public class ExController {
 	}
 
 	@PostMapping("calc1")
-	public String calculation1(@RequestParam("num1") String num1, @RequestParam("num2") String num2,
+	public String calculation1(@RequestParam("num1") int num1, @RequestParam("num2") int num2,
 			@RequestParam("operator") int operatr, Model model) {
 
 		int sum = 0;
 		try {
 			switch (operatr) {
 			case 1:
-				sum = Integer.parseInt(num1) + Integer.parseInt(num2);
+				sum = num1 + num2;
 				break;
 
 			case 2:
-				sum = Integer.parseInt(num1) - Integer.parseInt(num2);
+				sum = num1 - num2;
 				break;
 
 			case 3:
-				sum = Integer.parseInt(num1) * Integer.parseInt(num2);
+				sum = num1 * num2;
 				break;
 
 			case 4:
-				sum = Integer.parseInt(num1) / Integer.parseInt(num2);
+				sum = num1 / num2;
 				break;
 
 			case 5:
-				sum = Integer.parseInt(num1) % Integer.parseInt(num2);
+				sum = num1 % num2;
 				break;
 
 			default:
@@ -62,7 +62,7 @@ public class ExController {
 		}
 		log.debug("num1={}, num2={}, operatr={}, sum={}", num1, num2, operatr, sum);
 		model.addAttribute("sum", sum);
-		return "redirect:/ex/calc1Result";
+		return "ex/calc1Result";
 	}
 
 //	@PostMapping("calc1")

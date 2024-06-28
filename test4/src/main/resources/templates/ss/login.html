@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>로그인</title>
+</head>
+<script src="../js/jquery-3.7.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#loginButton").on("click", submit);
+	});
+
+	function submit() {
+        if ($("#id").val() == "") {
+            alert("아이디를 입력해주세요");
+            $("#id").focus();
+            $("#id").select();
+            return;
+        }
+        if ($("#password").val() == "" ) {
+            alert("비밀번호를 입력해주세요");
+            $("#password").focus();
+            $("#password").select();
+            return;
+        }
+        console.log($("#id").val());
+        $("#loginForm").submit();
+    }
+</script>
+<body>
+	<form action="login" method="post" id="loginForm">
+		아이디<input type="text" id="id" name="id" placeholder="아이디를 입력해주세요"><br>
+		비밀번호<input type="password" id="password" name="password"
+			placeholder="비밀번호를 입력해주세요"><br> <input type="submit"
+			id="loginButton" value="로그인">
+	</form>
+	<p style="color:red">[[${error}]]</p>
+</body>
+</html>
