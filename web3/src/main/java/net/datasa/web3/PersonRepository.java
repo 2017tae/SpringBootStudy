@@ -11,5 +11,4 @@ public interface PersonRepository extends JpaRepository<PersonEntity, String> {
 	// Entity, PK 타입
 	Optional<PersonEntity> findById(String id);
 
-
 }

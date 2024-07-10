@@ -1,5 +1,8 @@
 package net.datasa.web3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -35,5 +38,18 @@ public class PersonService {
 		
 		return personDTO;
 	}
-
+	
+	public List<PersonDTO> selectAll(){
+		List<PersonEntity> entityList = personRepository.findAll();
+		List<PersonDTO> dtoList = new ArrayList<>();
+		
+		for(PersonEntity entity : entityList) {
+			PersonDTO dto = PersonDTO.builder()
+					.ID(entity.getId())
+					.name(entity.getName())
+					.age(entity.getAge()).build();
+			dtoList.add(dto);
+		}
+		return dtoList;
+	}
 }
