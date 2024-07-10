@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+	<h1>[[${err}]]</h1>
+	<header>
+		<div id="header">
+			<h2 id="title">[[${title}]]</h2>
+			<span id="isbn">- [[${isbn}]](isbn)</span>
+		</div>
+		<span id="writer">[[${writer}]] (지은이)</span> <span>[[${publisher}]]</span>
+		<span>[[${publishDate}]]</span>
+	</header>
+	<main>
+		<div id="image"></div>
+		<section>
+			<div class="infos">
+				<div class="left">정가</div>
+				<div class="right">[[${beforePrice}]]</div>
+			</div>
+			<div class="infos">
+				<div class="left">판매가</div>
+				<div class="right">[[${curPrice}]]</div>
+			</div>
+			<div class="infos">
+				<div class="left">할인</div>
+				<div class="right">[[${discount}]]</div>
+			</div>
+			<div class="infos">
+				<form action="delete" method="post">
+					<input type="hidden" name="isbn" th:value="${isbn}"/>
+					<input type="submit" value="삭제" />
+				</form>
+			</div>
+		</section>
+	</main>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+label {
+  width: 100px;
+  display: block;
+  margin: 10px 0 5px 0;
+}
+
+main {
+	padding: 10px;
+  height: 100vh;
+  display: flex;
+}
+
+
+div#image {
+  height: 100%;
+  width: 50%;
+  background-color: gray;
+}
+
+section {
+  padding: 10px 30px 30px 30px;
+  width: 50%;
+}
+
+h2#title {
+  margin: 5px 0 5px 0;
+}
+
+header{
+	padding: 10px 0 10px 0;
+	border-bottom: 1px gray solid;
+}
+div#header{
+	display:flex;
+}
+
+span{
+	color:gray;
+	font-size: small;
+}
+
+span#isbn{
+	align-content: center;
+	margin:0 0 0 5px;
+}
+
+div.infos{
+	display:flex;
+}
+
+.left{
+	color:gray;
+	width: 60px;
+	heght:60px;
+}

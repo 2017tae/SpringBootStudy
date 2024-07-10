@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>regist</title>
+<link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+	<h3>[ 책 등록 ]</h3>
+	
+	<form action="regist" method="post">
+		<label for="isbn">ISBN</label>
+		<input type="text" id="isbn" name="isbn"/>
+		<label for="title">제목</label>
+		<input type="text" id="title" name="title"/>
+		<label for="writer">저자</label>
+		<input type="text" id="writer" name="writer"/>
+		<label for="publisher">출판사</label>
+		<input type="text" id="publisher" name="publisher"/>
+		<label for="publishDate">출판날짜</label>
+		<input type="date" id="publishDate" name="publishDate"/>
+		<label for="price">가격</label>
+		<input type="text" id="price" name="price"/>
+		<label for="discount">할인율</label>
+		<input type="number" min="0.0" max="1.0" step="0.1" id="discount" name="discount"/></br></br>
+		<input type="submit" value="제출"/>
+	</form>
+</body>
+</html>
