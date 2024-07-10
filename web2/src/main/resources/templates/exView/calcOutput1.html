@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>계산 결과</title>
+<style>
+#calcOutput {
+	font-size: 30px;
+}
+</style>
+</head>
+<body>
+	<h2>계산결과</h2>
+	<div id="calcOutput">
+		<span>[[${calc.num1}]]</span>
+		<span>[[${calc.op}]]</span>
+		<span>[[${calc.num2}]]</span>
+		=
+		<span>[[${res}]]</span>
+	</div>
+</body>
+</html>

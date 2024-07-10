@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>계산기</title>
+<style>
+	#calcForm {
+		width: 500px;
+		text-align: center;
+	}
+	input[type="text"] {
+		width: 100px;
+		font-size: 25px;
+	}
+	select {
+		width: 80px;
+		font-size: 30px;
+		text-align: center;
+	}
+	input[type="submit"] {
+		width: 100px;
+		font-size: 25px;
+		margin: 10px;
+	}
+</style>
+
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script>
+//페이지가 준비되면 제일먼저 실행되는 ready의 함수
+$(document).ready(function() {
+	//id가 'formSubmit'인 버튼을 클릭하면 폼 전송
+	$('#formSubmit').on('click', check);
+});
+
+
+function check() {
+
+	if ($('#num1').val() == '' || isNaN($('#num1').val())) {
+		alert('정수를 입력하세요.');
+		$('#num1').focus();
+		$('#num1').select();
+		return;
+	}
+	if ($('#num2').val() == '' || isNaN($('#num2').val())) {
+		alert('정수를 입력하세요.');
+		$('#num2').focus();
+		$('#num2').select();
+		return;
+	}
+
+	//폼 전송
+	$('#form').submit();
+}
+</script>
+</head>
+<body>
+	<div id="calcForm">
+	<h2>계산하기 2</h2>
+	<form id="form" action="calc2" method="post">
+		<input type="text" name="num1" id="num1">
+		<select name="op" id="op">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<input type="text" name="num2" id="num2">
+		<input type="button" id="formButton" value="계산">
+	</form>
+	</div>
+</body>
+</html>

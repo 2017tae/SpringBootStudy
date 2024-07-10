@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>save.html</title>
+<script>
+function save() {
+	let codeLocalValue = document.getElementById('codeLocal').value;
+	let codeSessionValue = document.getElementById('codeSession').value;
+	
+	console.log(codeLocalValue, codeSessionValue);
+	
+	localStorage.setItem('code', codeLocalValue);
+	sessionStorage.setItem('code', codeSessionValue);
+	
+}
+</script>
+</head>
+<body>
+	<p>localStorage와 sessionStorage에 저장</p>
+	<div>
+		<p>localStorage <input type="text" id="codeLocal"></p>
+		<p>sessionStorage <input type="text" id="codeSession"></p>
+		<p><input type="button" onclick="save()" value="저장"></p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+ table, td {
+ 	border: 1px solid black;
+ }
+ td {
+ 	width : 150px;
+ }
+</style>
+</head>
+<body>
+	<h1>[ Thymeleaf 문법 2 ]</h1>
+	
+	<h3>확인 출력</h3>
+	<p>[[${name}]]</p>
+	<p>[[${code}]]</p>
+	<p>[[${list}]]</p>
+	<p>[[${map}]]</p>
+	<p>[[${personlist}]]</p>
+	
+	<h3>리스트, 맵 관련 객체</h3>
+	<p th:text="${#lists.size(list)}"></p>
+	<p th:text="${#lists.contains(list, 'abc')}"></p>
+	<p th:text="${#maps.size(map)}"></p>
+	<p th:text="${#maps.containsKey(map, 'price')}"></p>
+	
+	<h3>제어문</h3>
+	<div th:if="${name != null}">
+		<hr>
+		<p th:text="${name}"></p>
+		<hr>
+	</div>
+	
+	<div th:if="${name == 'abc'}">
+		<hr>
+		<p th:text="${name}"></p>
+		<hr>
+	</div>
+	
+	<div th:unless="${name == 'abc'}">
+		<hr>
+		<p>abc 아님</p>
+		<hr>
+	</div>	
+	
+	<!-- code의 값이 1일때는 "aaaa", 2일때는 "bbbb", 그 외의 숫자일때는 "cccc" -->
+	<p th:if="${code == 1}" th:text="aaaa">
+	<p th:if="${code == 2}" th:text="bbbb">
+	<p th:if="${code != 1 and code != 2}" th:text="cccc">
+	
+	<div th:switch="${code}">
+		<p th:case="1" th:text="aaaa"></p>
+		<p th:case="2" th:text="bbbb"></p>
+		<p th:case="*" th:text="cccc"></p>
+	</div>
+	
+	
+	<h3>반복문</h3>
+	
+	<p>반복문을 사용하지 않은 table 태그</p>
+	
+	<table>
+		<tr>
+			<td>aaa</td>
+		</tr>
+		<tr>
+			<td>bbb</td>
+		</tr>
+		<tr>
+			<td>ccc</td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<td>aaa</td>
+			<td>bbb</td>
+			<td>ccc</td>
+		</tr>
+	</table>
+	
+	<p>반복문으로 만든 표1</p>
+	<table>
+		<tr th:each="s, i : ${list}">
+			<td th:text="${s}"></td>
+			<td th:text="${i.index}"></td>
+		</tr>
+	</table>
+		<!-- 
+			index	현재 반복 인덱스  (0부터 시작)		
+			count	현재 반복 인덱스  (1부터 시작)	
+			size	총 요소 수
+			current	현재 요소
+			even	현재 반복이 짝수인지 여부 (boolean) 
+			odd	현재 반복이 홀수인지 여부 (boolean)
+			first	현재 반복이 첫번째인지 여부 (boolean) 
+			last	현재 반복이 마지막인지 여부 (boolean)
+ 		-->
+	
+	<p>반복문으로 만든 표2</p>
+	<table>
+		<tr>
+			<td th:each="s : ${list}" th:text="${s}"></td>
+		</tr>
+	</table>
+	
+	<p>일반 문장으로 반복</p>
+	<p th:each="s : ${list}" th:text="${s}"></p>
+	
+	<p>태그 없이 반복</p>
+	<th:block th:each="s : ${list}" th:text="${s}"></th:block>
+	
+	<p>객체 반복 출력</p>
+	<table>
+		<tr>
+			<th>이름</th>
+			<th>나이</th>
+			<th>전화번호</th>
+		</tr>
+		<tr th:each="p : ${personlist}">
+			<td th:text="${p.name}"></td>
+			<td th:text="${p.age}"></td>
+			<td th:text="${p.phone}"></td>
+		</tr>
+	</table>
+	
+	<p>리스트와 상관없이 반복 </p>
+	<p th:each="n : ${#numbers.sequence(1, 5, 1)}">
+		<span th:text="${n}"></span>
+		<span>, </span>
+	</p>
+	
+	<!-- "1, 2, 3, 4, 5" 형식으로 출력 -->
+	<p>
+		<th:block th:each="n , i: ${#numbers.sequence(1, 5, 1)}">
+			<span th:text="${n}"></span><span th:unless="${i.last}">, </span>
+		</th:block>
+	</p>
+	
+	<p>맵의 모든 값을 출력</p>
+	<table>
+		<tr th:each="item : ${map}">
+			<td>
+				<span th:text="${item.key}"></span>
+			</td>
+			<td>
+				<span th:text="${item.value}"></span>
+			</td>
+		</tr>
+	</table>
+	
+	<p>맵의 특정 값을 읽을 때</p>
+	<p th:text="${map.product}"></p>
+	
+</body>
+</html>

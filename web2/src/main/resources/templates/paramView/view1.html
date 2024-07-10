@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>view1.html</title>
+<script>
+function check() {
+	let id = document.getElementById('id');
+	if (id.value === '') {
+		alert('ID를 입력하세요.');
+		id.focus();
+		return false;
+	}
+
+	return true;
+}
+</script>
+</head>
+<body>
+	<h1>[GET method로 parameter 전달]</h1>
+	<!-- 경로 http://localhost:8888/param/view1 -->
+	<form action="input1" method="get" onsubmit="return check()">
+		ID <input type="text" name="id" id="id"><br>
+		PW <input type="password" name="pw" id="pw"><br>
+		이름 <input type="text" name="name"><br>
+		전화 <input type="text" name="phone"><br>
+			<input type="radio" name="com" value="kt" checked>KT
+			<input type="radio" name="com" value="sk">SK
+			<input type="radio" name="com" value="lg">LGT
+		<input type="submit" value="전송"><br>
+	</form>
+</body>
+</html>
