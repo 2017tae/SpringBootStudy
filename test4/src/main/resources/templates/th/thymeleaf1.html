@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>[ Thymeleaf 문법 1 ]</h1>
+	
+	<h3>* Model의 값 출력</h3>
+	<p>[[${str}]]</p>
+	<p>[[${num}]]</p>
+	<p th:text="${str}">테스트문자열</p>
+	<p><input type="text" th:value="${str}"></p>
+	<p><span th:text="${num}">000000</span>원</p>
+	
+	<h3>HTML태그의 인식</h3>
+	<p th:text="${tag}"></p>
+	<p th:utext="${tag}"></p>
+	
+	<h3>주석</h3>
+	<!-- HTML 주석 -->
+	<script>
+		//자바스크립트 주석
+		/* 자바스크립트 주석 */
+	</script>
+	<!--/* 타임리프의 주석 */-->
+	
+	<h3>연산자</h3>
+	<p>비교 연산자 : == != &lt; > <= >= </p>
+	<p>비교 연산자 : eq ne lt gt le ge </p>
+	<p>논리 연산자 : and or not</p>
+	<p th:text="${num}"></p>
+	<p th:text="${num + 10}"></p>
+	<p th:text="${num > 500}"></p>
+	<p th:text="${num <= 500}"></p>
+	<p th:text="${num gt 500}"></p>
+	<p th:text="${num le 500}"></p>
+	<p th:text="${num le 100 and num ge 50}"></p>
+	
+	<h3>경로생성과 하이퍼링크</h3>
+	<p><a href="https://www.naver.com">네이버로 가기</a></p>
+	<p><a href="../ex/calc1">계산기</a></p>
+	<p><a href="/ex/calc1">계산기</a></p>
+	<p><a th:href="${url}">외부 페이지 이동</a></p>
+	
+	<!--/* 절대주소 */-->
+	<p><a href="@{/ex/calc1}">계산기</a></p>
+	
+	<!--/* 프로젝트 내의 static/images/chart.png를 불러올 때 
+			현재 위치는 http://localhost:8888/th/thymeleaf1 */-->
+	<p><img src="../images/chart.png"></p>
+	<p><img th:src="@{/images/chart.png}"></p>
+	
+	<h3>객체 출력</h3>
+	<p>이름: <span th:text="${person.name}"></span></p>
+	<!--/* th:object 객체
+			*{}로 객체의 변수를 갖고 올수 있음 
+	*/-->
+	<p th:object="${person}">
+		이름:<span th:text="*{name}"></span><br>
+		나이:<span th:text="*{age}"></span><br>
+		전화:<span th:text="*{phoneNum}"></span><br> 
+	</p>
+	
+	<h3>숫자, 날짜의 포매팅</h3>
+	<p th:text="${n1}"></p>
+	<p th:text="${n2}"></p>
+	<p th:text="${n3}"></p>
+	<p th:text="${today}"></p>
+	
+	<p th:text="${#numbers.formatInteger(n1, 10)}"></p>
+	<p th:text="${#numbers.formatInteger(n1, 3, 'COMMA')}"></p>
+	<p th:text="${#numbers.formatDecimal(n2, 3, 'COMMA', 2, 'POINT')}"></p>
+	<p th:text="${#numbers.formatPercent(n2, 0,2)}"></p>
+	<p th:text="${#numbers.formatPercent(n3, 10,2)}"></p>
+	<p th:text="${#dates.format(today, 'yyyy/MM/dd HH:mm')}"></p>
+	
+	<h3>문자열 다루기</h3>
+	<p th:text="${str}"></p>
+	<p th:text="${str + 'aaa'}"></p>
+	<p th:text="|aaa${str}bbb|"></p>
+	<p th:text="${str == '문자열'}"></p>
+	<p th:text="${str == '문자열'}"></p>
+	
+</body>
+</html>
