@@ -3,30 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <title>members</title>
-<link rel="stylesheet" href="../style.css"/>
+<link rel="stylesheet" href="../style.css" />
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+	function func(a) {
+		if (confirm(a + "회원을 삭제하시겠습니까?")) {
+			alert("삭제되었습니다.");
+			location.href = '/delete/' + a;
+		}
+	}
+	$(document).ready(function(){
+		$('.delButton').on('click', function(){
+			// let id = $(this).attr('data-id');
+			let id = $(this).data('id');
+			if(confirm(id+"회원을 삭제하시겠습니까?")){
+				location.href='/delete/'+id;
+				alert("삭제되었습니다.");
+			}
+			
+			// 캐싱으로 미리 저장을 해놔서 접근이 가능해서 비교적(아주 조금) 빠르다
+			// 다만 새로 변경된 데이터가 아닌 이전에 캐싱된 데이터를 가져올 가능성 또한 존재
+		});
+		// 위 아래 둘을 같은 기능을 한다.		
+		// $('.delButton').click(function(){});
+		
+		
+	});
+</script>
 </head>
 <body>
 	<h1>[ 회원 ]</h1>
-	
+
 	<table>
 		<thead>
 			<tr>
-				<td>No.</td>
+				<td>번호</td>
 				<td>ID</td>
-				<td>이름</td>
-				<td>나이</td>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:if="${response=='Nodata'}">
-				<td> 해당 쿼리에 부합하븐 도서 결과가 없습니다. 다시 올바르게 입력해주세요. <ㅡ
+			<tr th:if="${results==null or results.isEmpty()}">
+				<td colspan="5">해당 쿼리에 부합하는 도서 결과가 없습니다. 다시 올바르게 입력해주세요.
 			</tr>
-			<tr th:each="result, count: ${results}">
+			<tr th:if="${results}" th:each="result, count: ${results}">
 				<td class="no"><span th:text="${count.index+1}"></span></td>
-				<td class="id"><span th:text="${result.ID}"></span></td>
-				<td class="name"><span th:text="${result.name}"></span></td>
-				<td class="age"><span th:text="${result.age}"></span></td>
-				
+				<td class="id"><a th:href="|view?id=${result.ID}|"
+					th:text="${result.ID}"></a></td>
+				<td class="id1"><a
+					th:href="@{info/{viewid}(viewid=${result.ID})}"
+					th:text="${result.ID}"></a></td>
+				<!--/* localhost:8888/info/aaa */-->
+				<td><a th:href="@{delete/{viewid}(viewid=${result.ID})}">삭제</a></td>
+				<!--/* 삭제에 링크를 걸어 서버의 특정 경로로 요청을 보냄
+					요청을 모낼 때 누른 곳 옆의 아이디를 같이 보냄
+					서버에서는 해당 아이디를 삭제하고 회원 목록으로 되돌아옴 */-->
+				<td><button th:onclick="func([[${result.ID}]])">삭제</button></td>
+				<!--/* 삭제 버튼을 클릭하면 "XXX 회원을 삭제하시겠습니까?" 물어보고 확인 누르면 삭제, 나머지 위와 같음 */-->
+				<td><button class="delButton" th:data-id="${result.ID}">삭제</button></td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(document).ready(function(){
+	$('#button1').on('click', button1test);
+});
+
+function button1test(){
+	alert('button 클릭');
+}
+function button2test(){
+	$('#button2').on('click', button1test);
+}
+</script>
+</head>
+<body>
+	<button id="button1">1</button>
+</body>
+</html>

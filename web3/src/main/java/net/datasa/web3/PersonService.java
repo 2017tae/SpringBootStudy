@@ -24,15 +24,24 @@ public class PersonService {
 
 	}
 	
+	/**
+	 * DB에 Person 저장
+	 * @param personDTO
+	 */
 	public void save(PersonDTO personDTO) {
 		System.out.println(personDTO.getID());
 		PersonEntity entity = PersonEntity.builder().id(personDTO.getID()).name(personDTO.getName()).age(personDTO.getAge()).build();
 		personRepository.save(entity);
 	}
 	
-	public PersonDTO getMember(String ID) throws NoSuchFieldException {
+	/**
+	 * 
+	 * @param ID 			불러올 Person의 ID
+	 * @return PersonDTO	
+	 */
+	public PersonDTO getMember(String ID){
 		
-		PersonEntity p = personRepository.findById(ID).orElseThrow(()-> new NoSuchFieldException());
+		PersonEntity p = personRepository.findById(ID).orElseThrow(()-> new RuntimeException());
 		
 		PersonDTO personDTO = PersonDTO.builder().ID(p.getId()).name(p.getName()).age(p.getAge()).build();
 		
@@ -51,5 +60,10 @@ public class PersonService {
 			dtoList.add(dto);
 		}
 		return dtoList;
+	}
+	
+	public void delete(String ID) {
+		personRepository.deleteById(ID);
+		return;
 	}
 }

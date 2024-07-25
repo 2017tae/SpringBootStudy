@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MemoList</title>
+<link rel="stylesheet" href="../style.css" />
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(document).ready(function(){
+	
+	$('.memo').on('click', info);
+	$('#writeBtn').on('click', write);
+});
+
+function info(){
+	let id = $(this).data('id');
+	
+	location.href='memo/info?id='+id;	
+}
+function write(){
+	
+	location.href='memo/write';	
+}
+</script>
+
+</head>
+<body>
+	<div id="header">
+	<h1>방명록 리스트</h1>
+	<button id="writeBtn">글쓰기</button>
+	</div>
+	<hr>
+	<div th:if="${memos==null or memos.isEmpty()}">
+		<h3>작성된 방명록이 없습니다.</h3>
+	</div>
+	<div th:if="${memos}" th:each="memo, count: ${memos}" >
+		<div class="memo" th:data-id="${memo.id}">
+			<div class="no">
+				<h3 th:text="${count.index+1}"></h3>
+			</div>
+			<div class="contents">
+				<div class="contentsHeader">
+					<div><span th:text="'작성자: ' + ${memo.name}"></span></div>
+					<div><span th:text="'작성일: ' + ${#temporals.format(memo.createdTime, 'yy.MM.dd HH:mm:ss')}"></span></div>
+				</div>
+				<h3 th:text="${memo.contents}"></h3>
+				
+			</div>
+		</div>
+		<hr>
+	</div>
+	<div class="pageNum">
+		<span th:if="${memos.number>0}">
+			<a th:href="@{/memo(page=${memos.number})}"><</a>
+		</span>
+   		<span th:text="${memos.number+1}"></span>
+   		<span th:if="${memos.totalPages>memos.number+1}">
+			<a th:href="@{/memo(page=${memos.number+2})}">></a>
+		</span>
+   		
+   	</div>
+</body>
+</html>

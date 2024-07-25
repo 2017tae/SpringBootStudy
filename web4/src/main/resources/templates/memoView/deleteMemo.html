@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>write Memo</title>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(document).ready(function(){
+	
+	let errorMessage = $("#err").html();
+    if (errorMessage) {
+        alert(errorMessage);
+    }
+	
+});
+</script>
+
+</head>
+<body>
+	<h1>삭제</h1>
+	<div th:if="${err}" th:text="${err}" style="display:none;" id="err"></div>
+	<form action="delete" method="post">
+		<input type="hidden" id="id" name="id" th:value="${param.id}">	
+		<label for="pw">비밀번호</label></br>
+		<input type="password" id="pw" name="pw"></br>
+		<input type="submit" id="btn" value="확인">
+	</form>
+</body>
+</html>

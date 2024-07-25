@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+div.memo {
+	display: flex;
+	align-items: center;
+}
+
+div.no {
+	width: 10%;
+}
+div.contents {
+	width: 90%;
+}
+div.pageNum{
+	text-align:center;
+}
+
+div#header{
+	display:flex;
+	justify-content: space-between;
+}
+
+div.contentsHeader{
+	width:100%;
+	display:flex;
+	justify-content: space-between;
+	align-items:center;
+}

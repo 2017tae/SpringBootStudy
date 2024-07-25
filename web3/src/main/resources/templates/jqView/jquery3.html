@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(document).ready(function(){
+	$('#bt1').on('click', test1);
+	$('#bt2').on('click', test2);
+	$('#bt3').on('click', test3);
+});
+
+function test1(){
+	let ar1 = [10,20];
+	let ar2 = []; // 배열 길이 0
+	let ar3 = new Array(); //배열 길이 0
+	let ar4 = new Array(5); //초기화 x, 배열 길이 5
+	
+	console.log(ar1); //[10.20]
+	console.log(ar2); //[]
+	console.log(ar3); //[]
+	console.log(ar4); //5 [empty * 5]
+	console.log(ar4.length); //5
+	console.log(ar4[0]); //undefined
+	
+	ar1[0]=5;
+	console.log(ar1);
+	ar1[3]=30;
+	console.log(ar1);
+	ar1.push(40);
+	console.log(ar1);
+	ar1.pop(); // 맨 뒤 뺌
+	console.log(ar1);
+	ar1.splice(2,1); // 2번 요소부터 1개 삭제
+	console.log(ar1);
+	ar1.shift(); // 왼쪽으로 쉬프트
+	console.log(ar1);
+	ar1.unshift(100); // 앞에 추가하고 오른쪽으로 쉬프트
+	console.log(ar1);
+	ar1.reverse();  // 배열 반대로
+	console.log(ar1);
+}
+function test2(){
+	alert('each 함수 사용');
+	let ar = [10,20,30];
+	$.each(ar, function(i, n){
+		console.log(i, n);
+	});
+	
+	$(ar).each(function(i, n){
+		console.log(i, n);
+	});
+}
+function test3(){
+	alert('객체 배열 사용');
+	let ob = {num:1, name:'aaa', age:11};
+	
+	let objectArray=[
+		{num:1, name:'aaa', age:11},
+		{num:2, name:'bbb', age:22},
+		{num:3, name:'ccc', age:33}
+	];
+	
+	$(objectArray).each(function(i, n){
+		console.log('이름', n.name, '나이', n.age)
+	});
+}
+</script>
+</head>
+<body>
+	<h1>[Jquery - 배열]</h1>
+	<p><button id="bt1">배열 사용</button></p>
+	<p><button id="bt2">each() 함수 사용</button></p>
+	<p><button id="bt3">객체 배열 사용</button></p>
+
+</body>
+</html>

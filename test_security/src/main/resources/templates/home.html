@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>home</h1>
+	
+	<p><a href="view1">view1</a></p>
+	<p sec:authorize="isAuthenticated()"><a href="view2">view2</a></p>
+	
+	<p sec:authorize="not isAuthenticated()"><a href="loginForm">로그인</a></p>
+	<p sec:authorize="isAuthenticated()"><a href="logout">로그아웃</a></p>
+	
+	<p><a href="thyme">타임리프 테스트</a></p>
+</body>
+</html>

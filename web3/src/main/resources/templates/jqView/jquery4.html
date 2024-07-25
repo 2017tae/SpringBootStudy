@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(document).ready(function(){
+	$('#bt1').on('click', test1);
+	$('#bt2').on('click', test2);
+	$('#bt3').on('click', test3);
+	$('#bt4').on('click', test4);
+});
+
+function test1(){
+	let html = $('h3').html();
+	console.log(html);
+	$('h3').each(function(i, ob){
+		console.log($(ob).html()); // 태그안의 태그명까지 갖고옴
+	});
+}
+function test2(){
+	let text = $('h3').text();
+	console.log(text);
+	$('h3').each(function(i, ob){
+		console.log($(ob).text()); // 태그 안의 문자열만 갖고 옴
+	});
+}
+function test3(){
+	let text1 = $('#text1').val();
+	console.log(text1);
+}
+function test4(){
+	$('#div1').html('안녕하세요');
+	
+}
+</script>
+</head>
+<body>
+	<p><button id="bt1">html() 함수</button></p>
+	<p><button id="bt2">text() 함수</button></p>
+	<p><button id="bt3">val() 함수</button></p>
+
+	<h3><b>h3</b>태그를 사용한 문자열 1</h3>
+	<h3><i>h3</i>태그를 사용한 문자열 2</h3>
+	<p><input type="text" id="text1"></p>
+	<p><button id="bt4">문서 객체 내용 변경</button></p>
+	<div id = "div1">원래 내용</div>
+	<p><input type = "text" id="text2" value="원래 내용"></p>
+	<p><textarea id = "text3">원래내용</textarea></p>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.hidden{
+		display:none;
+	}
+</style>
+<script th:src="@{/jquery-3.7.1.min.js}"></script>
+<script>
+	$(document).ready(function(){
+		$("#joinform").submit(validation);
+		
+		let err = $("#err").html();
+		if(err){
+			alert(err);
+		}
+			
+		$("#pw1").on("keyup", checkPw);
+		$("#rewriteBtn").on("click", reset);
+		$("#idCheck").on("click", winOpen);
+	});
+	function winOpen(){
+		// window.open(url, name, specs, replace)
+		window.open('idCheckForm','_blank','top=200px,left=700px,width=500px,height=500px')
+		
+	}
+	function reset(){
+		$("#id").val("");
+		$("#pw").val("");
+		$("#pw1").val("");
+		$("#name").val("");
+		$("#email").val("");
+		$("#phone").val("");
+		$("#address").val("");
+		
+		$("#pwWrong").addClass("hidden");
+	};
+	function validation(){
+		let id = $("#id").val();
+		let pw = $("#pw").val();
+		let pw1 = $("#pw1").val();
+		let name = $("#name").val();
+		let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+		 
+		 
+		if(id.length<3 || id.length>10){
+			alert("ID는 3~10자로 입력하세요");
+			return false;
+		}
+		else if(name==''){
+			alert("이름을 입력하세요.");
+			return false;
+		}else if(pw==''){
+			alert("비밀번호를 입력하세요");
+			return false;
+		}else if(pw!=pw1){
+			alert("비밀번호가 일치하지 않습니다");
+			return false;
+		}
+		
+	};
+	
+	function checkPw(){
+		
+		let pw = $("#pw").val();
+		let pw1 = $("#pw1").val();
+		
+		if(pw != pw1){
+			$("#pwWrong").removeClass("hidden");
+		}else{
+			$("#pwWrong").addClass("hidden");
+		}
+		
+		
+		
+	};
+	
+	
+
+</script>
+</head>
+<body>
+	<h1>[회원가입]</h1>
+	<div th:if="${err}" th:text="${err}" style="display:none;" id="err"></div>
+	<form action="join" method="post" id="joinform">
+		<label for="id">ID</label><br>
+		<input type="text" name="id" readonly placeholder="ID중복확인 이용" id="id"><button type="button" id="idCheck">ID 중복확인</button><br>
+		<label for="pw">비밀번호</label><br>
+		<input type="password" name="pw" placeholder="비밀번호 입력" id="pw"><br>
+		<input type="password" name="pw1" placeholder="비밀번호 다시 입력" id="pw1"><br>
+		<p id="pwWrong" class="hidden" style="color:red;">비밀번호가 일치하지 않습니다.</p>
+		<label for="name">이름</label><br>
+		<input type="text" name="name" placeholder="이름 입력" id="name"><br>
+		<label for="email">이메일</label><br>
+		<input type="email" name="email" placeholder="이메일 입력" id="email"><br>
+		<label for="phone">전화번호</label><br>
+		<input type="text" name="phone" placeholder="전화번호 입력" id="phone"><br>
+		<label for="address">주소</label><br>
+		<input type="text" name="address" placeholder="주소 입력" id="address"><br>
+		
+		<input type="submit" id="submit" value="등록">
+		
+	</form>
+	<button id="rewriteBtn">다시 쓰기</button>
+</body>
+</html>

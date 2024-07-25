@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+<script>
+$(document).ready(function(){
+	$('#img1').on('click', test1);
+	$('#img2').on('click', test2);
+	setInterval(test3, 1000);
+});
+
+function test1(){
+	$('#img1').attr('src', '/images/img2.png');
+}
+function test2(){
+	let imgs = ['/images/img1.png', '/images/img2.png', '/images/img3.png'];
+	
+	let curImg = $('#img2').attr('src');
+	let cnt = imgs.indexOf(curImg) + 1;
+	if(cnt >= imgs.length){
+		cnt = 0;
+	}
+	
+}
+
+function test3(){
+	let imgs = ['/images/img1.png', '/images/img2.png', '/images/img3.png'];
+	
+	let curImg = $('#img3').attr('src');
+	let cnt = imgs.indexOf(curImg) + 1;
+	if(cnt >= imgs.length){
+		cnt = 0;
+	}
+	$('#img3').attr('src', imgs[cnt]);
+}
+</script>
+</head>
+<body>
+	<p><img src="/images/img1.png" id="img1"></p>
+ 	<!-- 클릭하면 attr() 함수를 이용하여 src속성을 변경 -->
+	<p><img src="/images/img2.png" id="img2"></p>
+	<!-- 클릭할 때마다 5개의 이미지가 번갈아 나타남 -->
+	<p><img src="/images/img3.png" id="img3"></p>
+	<!-- 일정시간마다 5개의 이미지가 번갈아 나타남 -->
+	
+</body>
+</html>

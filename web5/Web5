@@ -1,0 +1,27 @@
+* 경로
+/member/join - 회원가입
+/member/loginForm -로그인
+/member/logout - 로그아웃
+/member/info - 정보 수정
+
+/board/list - 게시판 글 목록
+/board/write - 글쓰기
+/board/delete - 글 삭제
+
+
+web5_member 테이블 생성 sql문
+
+use hr;
+
+drop table web5_member;
+
+CREATE TABLE web5_member (
+    member_id VARCHAR(30) primary key,
+    member_password VARCHAR(100) NOT NULL,
+    member_name VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    phone VARCHAR(30),
+    address VARCHAR(200),
+    enabled BOOLEAN DEFAULT TRUE,
+    role varchar(30) default 'ROLE_USER' check(role in ('ROLE_USER', 'ROLE_ADMIN'))
+);
