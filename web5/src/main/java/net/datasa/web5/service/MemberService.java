@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.datasa.web5.domain.dto.AuthenticatedMember;
+import net.datasa.web5.domain.dto.GetMemberDTO;
 import net.datasa.web5.domain.dto.JoinMemberDTO;
-import net.datasa.web5.domain.dto.LoginMemberDTO;
-import net.datasa.web5.domain.dto.MemberDTO;
+import net.datasa.web5.domain.dto.UpdateMemberDTO;
 import net.datasa.web5.domain.entity.Member;
 import net.datasa.web5.domain.entity.Role;
 import net.datasa.web5.repository.MemberRepository;
@@ -61,6 +62,32 @@ public class MemberService implements UserDetailsService{
 		
 		memberRepository.save(member);
 	}
+	
+	@Transactional
+	public void updateMemberInfo(UpdateMemberDTO dto) {
+		Member member = memberRepository.findById(dto.getMemberId())
+				.orElseThrow(()-> new NoSuchElementException("해당 아이디는 존재하지 않습니다."));
+		
+		member.updateMemberInfo(bCryptPasswordEncoder.encode(dto.getMemberPassword()), 
+				dto.getMemberName(), 
+				dto.getEmail(), 
+				dto.getPhone(), 
+				dto.getAddress());
+	}
+	
+	@Transactional(readOnly=true)
+	public GetMemberDTO getMemberInfo(String memberId) {
+		Member member = memberRepository.findById(memberId)
+				.orElseThrow(()-> new NoSuchElementException("해당 아이디는 존재하지 않습니다."));
+		GetMemberDTO dto = GetMemberDTO.builder()
+				.memberId(member.getMemberId())
+				.memberName(member.getMemberName())
+				.email(member.getEmail())
+				.phone(member.getPhone())
+				.address(member.getAddress()).build();
+		
+		return dto;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -68,7 +95,7 @@ public class MemberService implements UserDetailsService{
 		Member member = memberRepository.findById(username)
 				.orElseThrow(()-> new NoSuchElementException("해당 아이디는 존재하지 않습니다."));
 		
-		MemberDTO user = MemberDTO.builder()
+		AuthenticatedMember authenticatedMember = AuthenticatedMember.builder()
 				.memberId(member.getMemberId())
 				.memberPassword(member.getMemberPassword())
 				.memberName(member.getMemberName())
@@ -78,7 +105,7 @@ public class MemberService implements UserDetailsService{
 				.role(member.getRole())
 				.enabled(member.isEnabled()).build();
 		
-		log.debug("user={}", user);
-		return user;
+		log.debug("user={}", authenticatedMember);
+		return authenticatedMember;
 	}
 }

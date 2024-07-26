@@ -16,7 +16,9 @@ import net.datasa.web5.domain.entity.Role;
 @Getter
 @NoArgsConstructor
 @Data
-public class MemberDTO implements UserDetails{
+public class AuthenticatedMember implements UserDetails{
+	
+	private static final long serialVersionUID=-2757275378661085190L;
 	
 	private String memberId;
 	private String memberPassword;
@@ -28,7 +30,7 @@ public class MemberDTO implements UserDetails{
 	private Role role; 
 	
 	@Builder
-	MemberDTO(String memberId, String memberPassword, String memberName, String email, String phone, String address, boolean enabled, Role role){
+	AuthenticatedMember(String memberId, String memberPassword, String memberName, String email, String phone, String address, boolean enabled, Role role){
 		this.memberId = memberId;
 		this.memberPassword = memberPassword;
 		this.memberName = memberName;

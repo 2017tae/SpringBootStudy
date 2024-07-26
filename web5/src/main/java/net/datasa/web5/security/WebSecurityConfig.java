@@ -18,7 +18,8 @@ public class WebSecurityConfig {
             , "/images/**"
             , "/css/**"
             , "/js/**"
-            ,"/**"
+            ,"/member/loginForm"
+            ,"/member/joinForm"
     };
 
     @Bean

@@ -53,4 +53,14 @@ public class Member {
 		this.role = role;
 		this.enabled = enabled;
 	}
+	
+	public void updateMemberInfo(String memberPassword, String memberName, String email, String phone, String address) {
+		this.memberPassword = memberPassword;
+		this.memberName = memberName;
+		this.email = email;
+		this.phone = phone;
+		this.address = address;
+	}
+	
+	
 }

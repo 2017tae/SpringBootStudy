@@ -1,5 +1,6 @@
 package net.datasa.web5.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +12,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.datasa.web5.domain.dto.AuthenticatedMember;
+import net.datasa.web5.domain.dto.GetMemberDTO;
 import net.datasa.web5.domain.dto.JoinMemberDTO;
 import net.datasa.web5.domain.dto.LoginMemberDTO;
+import net.datasa.web5.domain.dto.UpdateMemberDTO;
 import net.datasa.web5.service.MemberService;
 
 /**
@@ -35,26 +39,6 @@ public class MemberController {
 		return "memberView/loginForm";
 	}
 	
-//	/**
-//	 * 로그인 로직을 처리함
-//	 * @return 홈으로 redirect
-//	 */
-//	@PostMapping("login")
-//	public String login(@RequestParam(name="id")String id,
-//			@RequestParam(name="pw")String pw,
-//			RedirectAttributes redirectAttr) {
-//		try {
-//			LoginMemberDTO dto = LoginMemberDTO.builder()
-//					.memberId(id)
-//					.memberPassword(pw).build();
-//			memberService.login(dto);
-//		}catch(Exception e) {
-//			redirectAttr.addFlashAttribute("err", e.getMessage());
-//			return "redirect:/member/loginForm";
-//		}
-//		return "redirect:/";
-//	}
-//	
 	/**
 	 * 회원가입 화면을 불러옴
 	 * @return
@@ -92,7 +76,6 @@ public class MemberController {
 	@PostMapping("join")
 	public String join(@RequestParam(name="id")String id,
 			@RequestParam(name="pw")String pw,
-			@RequestParam(name="pw1")String pw1,
 			@RequestParam(name="name")String name,
 			@RequestParam(name="email")String email,
 			@RequestParam(name="phone")String phone,
@@ -102,7 +85,6 @@ public class MemberController {
 			JoinMemberDTO dto = JoinMemberDTO.builder()
 					.memberId(id)
 					.memberPassword(pw)
-					.memberPassword1(pw1)
 					.memberName(name)
 					.email(email)
 					.phone(phone)
@@ -121,7 +103,22 @@ public class MemberController {
 	 * @return
 	 */
 	@GetMapping("info")
-	public String infoForm() {
+	public String infoForm(@AuthenticationPrincipal AuthenticatedMember member, Model model) {
+		try {
+			GetMemberDTO dto = memberService.getMemberInfo(member.getMemberId());
+			model.addAttribute("id", dto.getMemberId());
+			model.addAttribute("name", dto.getMemberName());
+			model.addAttribute("email", dto.getEmail());
+			model.addAttribute("phone", dto.getPhone());
+			model.addAttribute("address", dto.getAddress());
+			log.debug("id:{}", dto.getMemberId());
+			log.debug("name:{}", dto.getMemberName());
+			log.debug("email:{}", dto.getEmail());
+			log.debug("phone:{}", dto.getPhone());
+			log.debug("address:{}", dto.getAddress());
+		}catch(Exception e) {
+			return "redirect:/";
+		}
 		return "memberView/infoForm";
 	}
 	
@@ -130,7 +127,29 @@ public class MemberController {
 	 * @return 홈으로 redirect
 	 */
 	@PostMapping("info")
-	public String update() {
+	public String update(@RequestParam(name="id")String id,
+			@RequestParam(name="pw")String pw,
+			@RequestParam(name="name")String name,
+			@RequestParam(name="email")String email,
+			@RequestParam(name="phone")String phone,
+			@RequestParam(name="address")String address,
+			RedirectAttributes redirectAttr) {
+		
+		try {
+			UpdateMemberDTO dto = UpdateMemberDTO.builder()
+					.memberId(id)
+					.memberPassword(pw)
+					.memberName(name)
+					.email(email)
+					.phone(phone)
+					.address(address).build();
+			
+			memberService.updateMemberInfo(dto);
+		}catch(Exception e) {
+			redirectAttr.addFlashAttribute("err", e.getMessage());
+			return "redirect:/member/info";
+		}
+		
 		return "redirect:/";
 	}
 }

@@ -7,41 +7,13 @@
 </head>
 <body>
 	<h1>[Home]</h1>
-	<p><a th:href="@{/member/joinForm}">회원가입</a></p>
-	<p><a th:href="@{/member/loginForm}">로그인</a></p>
-	<p><a th:href="@{/member/logout}">로그아웃</a></p>
-	<p><a th:href="@{/member/info}">개인정보 수정</a></p>
-	<div sec:authorize="not isAuthenticated()">
-		<p>로그인 하지 않음</p>
-	</div>
+	<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/joinForm}">회원가입</a></p>
+	<p sec:authorize="not isAuthenticated()"><a th:href="@{/member/loginForm}">로그인</a></p>
+	<p sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}">로그아웃</a></p>
+	<p sec:authorize="isAuthenticated()"><a th:href="@{/member/info}">개인정보 수정</a></p>
 
 	<div sec:authorize="isAuthenticated()">
-		<p sec:authorize="hasRole('USER')">ROLE_USER 권한을 갖고 있는지</p>
-		<p sec:authorize="hasRole('USER')">일반 사용자</p>
-		
-		<p sec:authorize="hasRole('ADMIN')">ROLE_ADMIN 권한을 갖고 있는지</p>
-		<p sec:authorize="hasRole('ADMIN')">관리자</p>
-		
-		<p>로그인한 아이디</p>
 		<p sec:authentication="name"></p>
-		
-		<p>로그인시 사용된 객체 정보</p>
-		<p sec:authentication="principal"></p>
-		
-		<p>권한</p>
-		<p sec:authentication="principal.authorities"></p>
-		
-		<p>인증 정보</p>
-		<p th:text="${#authentication}"></p>
-		<p th:text="${#authentication.name}"></p>
-		<p th:text="${#authentication.principal}"></p>
-		<p th:text="${#authentication.principal.enabled}"></p>
-		
-		<p>로그인 아이디 확인 예</p>
-		<p th:if="${#authentication.name == 'abc' }">ID는 abc입니다</p>
-		
-		<p sec:authorize="isAuthenticated()" th:if="${#authentication.name == 'abc' } or ${#authorization.expression('hasRole(''ADMIN'')')}">삭제</p>	
-		
 	</div>
 </body>
 </html>
