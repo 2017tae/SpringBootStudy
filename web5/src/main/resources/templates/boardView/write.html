@@ -5,6 +5,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>[글쓰기]</h1>
+	<form action="write" method="post">
+		<label for="title">제목</label><br>
+		<input type="text" name="title" id="title"><br>
+		<label for="contents">내용</label><br>
+		<textarea name="contents" id="contents" rows="4"></textarea><br>
+		<label for="originalName">첨부파일</label><br>
+		<input type="file" name="originalName" id="originalName"><br>
+		<input type="submit" value="등록">
+	</form>
 </body>
 </html>

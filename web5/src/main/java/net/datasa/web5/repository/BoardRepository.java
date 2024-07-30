@@ -1,11 +1,11 @@
-//package net.datasa.web5.repository;
-//
-//import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.stereotype.Repository;
-//
-//import net.datasa.web5.domain.entity.Board;
-//
-//@Repository
-//public interface BoardRepository extends JpaRepository<Board, Integer>{
-//
-//}
+package net.datasa.web5.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import net.datasa.web5.domain.entity.Board;
+
+@Repository
+public interface BoardRepository extends JpaRepository<Board, Integer>{
+
+}

@@ -20,6 +20,9 @@ public class WebSecurityConfig {
             , "/js/**"
             ,"/member/loginForm"
             ,"/member/joinForm"
+            ,"/member/idCheckForm"
+            ,"/member/join"
+            ,"/board/list"
     };
 
     @Bean

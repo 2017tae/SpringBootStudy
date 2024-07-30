@@ -8,7 +8,7 @@
 		display:none;
 	}
 </style>
-<script th:src="@{/jquery-3.7.1.min.js}"></script>
+<script th:src="@{/js/jquery-3.7.1.min.js}"></script>
 <script>
 	$(document).ready(function(){
 		$("#joinform").submit(validation);
@@ -24,7 +24,7 @@
 	});
 	function winOpen(){
 		// window.open(url, name, specs, replace)
-		window.open('idCheckForm','_blank','top=200px,left=700px,width=500px,height=500px')
+		window.open('idCheckForm','_blank','top=200px,left=700px,width=500px,height=500px');
 		
 	}
 	function reset(){
